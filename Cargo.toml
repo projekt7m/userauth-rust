@@ -1,8 +1,11 @@
 [package]
 name = "p7m-userauth"
+description = "Rust bindings for the login and authentication API of P7M"
 version = "0.11.0"
 authors = ["OpenAPI Generator team and contributors"]
 edition = "2018"
+license = "Apache-2.0"
+repository = "https://github.com/projekt7m/userauth-rust"
 
 [dependencies]
 serde = "^1.0"
