@@ -12,15 +12,27 @@
 
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
-pub struct AuthorizationRequest {
-    #[serde(rename = "tenantId")]
-    pub tenant_id: String,
+pub struct ClientUpdate {
+    #[serde(rename = "name")]
+    pub name: String,
+    #[serde(rename = "redirectUri")]
+    pub redirect_uri: String,
+    #[serde(rename = "refreshToken")]
+    pub refresh_token: bool,
+    #[serde(rename = "sessionDuration", skip_serializing_if = "Option::is_none")]
+    pub session_duration: Option<i32>,
+    #[serde(rename = "clientSecret", skip_serializing_if = "Option::is_none")]
+    pub client_secret: Option<String>,
 }
 
-impl AuthorizationRequest {
-    pub fn new(tenant_id: String) -> AuthorizationRequest {
-        AuthorizationRequest {
-            tenant_id,
+impl ClientUpdate {
+    pub fn new(name: String, redirect_uri: String, refresh_token: bool) -> ClientUpdate {
+        ClientUpdate {
+            name,
+            redirect_uri,
+            refresh_token,
+            session_duration: None,
+            client_secret: None,
         }
     }
 }

@@ -63,6 +63,8 @@ pub fn urlencode<T: AsRef<str>>(s: T) -> String {
 
 pub mod account_api;
 pub mod auth_api;
+pub mod client_api;
+pub mod service_api;
 pub mod tenant_api;
 
 pub mod configuration;

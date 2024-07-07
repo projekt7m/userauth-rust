@@ -12,15 +12,21 @@
 
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
-pub struct AuthorizationRequest {
-    #[serde(rename = "tenantId")]
-    pub tenant_id: String,
+pub struct NewService {
+    #[serde(rename = "serviceTag")]
+    pub service_tag: String,
+    #[serde(rename = "description")]
+    pub description: String,
+    #[serde(rename = "serviceUri")]
+    pub service_uri: String,
 }
 
-impl AuthorizationRequest {
-    pub fn new(tenant_id: String) -> AuthorizationRequest {
-        AuthorizationRequest {
-            tenant_id,
+impl NewService {
+    pub fn new(service_tag: String, description: String, service_uri: String) -> NewService {
+        NewService {
+            service_tag,
+            description,
+            service_uri,
         }
     }
 }

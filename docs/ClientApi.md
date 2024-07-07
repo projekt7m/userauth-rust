@@ -1,30 +1,30 @@
-# \AccountApi
+# \ClientApi
 
 All URIs are relative to *https://login.p7m.de/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**delete_account_by_id**](AccountApi.md#delete_account_by_id) | **DELETE** /accounts/{id} | Delete a user account
-[**get_account_by_id**](AccountApi.md#get_account_by_id) | **GET** /accounts/{id} | Get an account, that is known by its ID (UUID)
-[**get_accounts**](AccountApi.md#get_accounts) | **GET** /accounts | Get the list of all accounts of the tenant
-[**post_accounts**](AccountApi.md#post_accounts) | **POST** /accounts | 
-[**put_account_by_id**](AccountApi.md#put_account_by_id) | **PUT** /accounts/{id} | 
+[**delete_clients_by_id_superadmin**](ClientApi.md#delete_clients_by_id_superadmin) | **DELETE** /clients/{id} | Deletes an OAuth client
+[**get_clients_by_id_superadmin**](ClientApi.md#get_clients_by_id_superadmin) | **GET** /clients/{id} | Requests a single OAuth client by its ID
+[**get_clients_superadmin**](ClientApi.md#get_clients_superadmin) | **GET** /clients | Gets the list of all registered OAuth clients
+[**post_clients_superadmin**](ClientApi.md#post_clients_superadmin) | **POST** /clients | Create a new OAuth client
+[**put_clients_by_id_superadmin**](ClientApi.md#put_clients_by_id_superadmin) | **PUT** /clients/{id} | Updates an OAuth client
 
 
 
-## delete_account_by_id
+## delete_clients_by_id_superadmin
 
-> delete_account_by_id(id)
-Delete a user account
+> delete_clients_by_id_superadmin(id)
+Deletes an OAuth client
 
-Delete a user account
+Deletes an OAuth client
 
 ### Parameters
 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**id** | **String** | ID of the account | [required] |
+**id** | **String** | ID of the client | [required] |
 
 ### Return type
 
@@ -42,23 +42,23 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## get_account_by_id
+## get_clients_by_id_superadmin
 
-> crate::models::Account get_account_by_id(id)
-Get an account, that is known by its ID (UUID)
+> crate::models::Client get_clients_by_id_superadmin(id)
+Requests a single OAuth client by its ID
 
-Get an account, that is known by its ID (UUID)
+Requests a single OAuth client by its ID
 
 ### Parameters
 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**id** | **String** | ID of the account | [required] |
+**id** | **String** | ID of the client | [required] |
 
 ### Return type
 
-[**crate::models::Account**](Account.md)
+[**crate::models::Client**](Client.md)
 
 ### Authorization
 
@@ -72,12 +72,12 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## get_accounts
+## get_clients_superadmin
 
-> crate::models::AccountData get_accounts()
-Get the list of all accounts of the tenant
+> crate::models::ClientData get_clients_superadmin()
+Gets the list of all registered OAuth clients
 
-Get the list of all accounts of the tenant  An account represents an authentication identity
+Gets the list of all registered OAuth clients  This endpoint is only available to SuperAdmins.
 
 ### Parameters
 
@@ -85,7 +85,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**crate::models::AccountData**](AccountData.md)
+[**crate::models::ClientData**](ClientData.md)
 
 ### Authorization
 
@@ -99,21 +99,23 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## post_accounts
+## post_clients_superadmin
 
-> crate::models::Account post_accounts(new_account)
+> crate::models::Client post_clients_superadmin(new_client)
+Create a new OAuth client
 
+Create a new OAuth client  This endpoint is only available to SuperAdmin users.
 
 ### Parameters
 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**new_account** | [**NewAccount**](NewAccount.md) | The account to be created | [required] |
+**new_client** | [**NewClient**](NewClient.md) | The client to be created | [required] |
 
 ### Return type
 
-[**crate::models::Account**](Account.md)
+[**crate::models::Client**](Client.md)
 
 ### Authorization
 
@@ -127,22 +129,24 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## put_account_by_id
+## put_clients_by_id_superadmin
 
-> crate::models::Account put_account_by_id(id, account)
+> crate::models::Client put_clients_by_id_superadmin(id, client_update)
+Updates an OAuth client
 
+Updates an OAuth client
 
 ### Parameters
 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**id** | **String** | ID of the account | [required] |
-**account** | [**Account**](Account.md) | Account to update | [required] |
+**id** | **String** | ID of the client | [required] |
+**client_update** | [**ClientUpdate**](ClientUpdate.md) | The updated client | [required] |
 
 ### Return type
 
-[**crate::models::Account**](Account.md)
+[**crate::models::Client**](Client.md)
 
 ### Authorization
 

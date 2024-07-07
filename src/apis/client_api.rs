@@ -15,53 +15,62 @@ use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
 
-/// struct for typed errors of method [`delete_account_by_id`]
+/// struct for typed errors of method [`delete_clients_by_id_superadmin`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum DeleteAccountByIdError {
-    Status400(),
+pub enum DeleteClientsByIdSuperadminError {
+    Status401(),
+    Status403(),
     Status404(),
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`get_account_by_id`]
+/// struct for typed errors of method [`get_clients_by_id_superadmin`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum GetAccountByIdError {
+pub enum GetClientsByIdSuperadminError {
+    Status401(),
+    Status403(),
+    Status404(),
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`get_accounts`]
+/// struct for typed errors of method [`get_clients_superadmin`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum GetAccountsError {
+pub enum GetClientsSuperadminError {
+    Status401(),
+    Status403(),
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`post_accounts`]
+/// struct for typed errors of method [`post_clients_superadmin`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum PostAccountsError {
+pub enum PostClientsSuperadminError {
+    Status401(),
+    Status403(),
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`put_account_by_id`]
+/// struct for typed errors of method [`put_clients_by_id_superadmin`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum PutAccountByIdError {
-    Status400(),
+pub enum PutClientsByIdSuperadminError {
+    Status401(),
+    Status403(),
     Status404(),
     UnknownValue(serde_json::Value),
 }
 
 
-/// Delete a user account
-pub async fn delete_account_by_id(configuration: &configuration::Configuration, id: &str) -> Result<(), Error<DeleteAccountByIdError>> {
+/// Deletes an OAuth client
+pub async fn delete_clients_by_id_superadmin(configuration: &configuration::Configuration, id: &str) -> Result<(), Error<DeleteClientsByIdSuperadminError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/accounts/{id}", local_var_configuration.base_path, id=crate::apis::urlencode(id));
+    let local_var_uri_str = format!("{}/clients/{id}", local_var_configuration.base_path, id=crate::apis::urlencode(id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
@@ -80,19 +89,19 @@ pub async fn delete_account_by_id(configuration: &configuration::Configuration, 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         Ok(())
     } else {
-        let local_var_entity: Option<DeleteAccountByIdError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<DeleteClientsByIdSuperadminError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
 }
 
-/// Get an account, that is known by its ID (UUID)
-pub async fn get_account_by_id(configuration: &configuration::Configuration, id: &str) -> Result<crate::models::Account, Error<GetAccountByIdError>> {
+/// Requests a single OAuth client by its ID
+pub async fn get_clients_by_id_superadmin(configuration: &configuration::Configuration, id: &str) -> Result<crate::models::Client, Error<GetClientsByIdSuperadminError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/accounts/{id}", local_var_configuration.base_path, id=crate::apis::urlencode(id));
+    let local_var_uri_str = format!("{}/clients/{id}", local_var_configuration.base_path, id=crate::apis::urlencode(id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
@@ -111,19 +120,19 @@ pub async fn get_account_by_id(configuration: &configuration::Configuration, id:
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<GetAccountByIdError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<GetClientsByIdSuperadminError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
 }
 
-/// Get the list of all accounts of the tenant  An account represents an authentication identity
-pub async fn get_accounts(configuration: &configuration::Configuration, ) -> Result<crate::models::AccountData, Error<GetAccountsError>> {
+/// Gets the list of all registered OAuth clients  This endpoint is only available to SuperAdmins.
+pub async fn get_clients_superadmin(configuration: &configuration::Configuration, ) -> Result<crate::models::ClientData, Error<GetClientsSuperadminError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/accounts", local_var_configuration.base_path);
+    let local_var_uri_str = format!("{}/clients", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
@@ -142,18 +151,19 @@ pub async fn get_accounts(configuration: &configuration::Configuration, ) -> Res
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<GetAccountsError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<GetClientsSuperadminError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
 }
 
-pub async fn post_accounts(configuration: &configuration::Configuration, new_account: crate::models::NewAccount) -> Result<crate::models::Account, Error<PostAccountsError>> {
+/// Create a new OAuth client  This endpoint is only available to SuperAdmin users.
+pub async fn post_clients_superadmin(configuration: &configuration::Configuration, new_client: crate::models::NewClient) -> Result<crate::models::Client, Error<PostClientsSuperadminError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/accounts", local_var_configuration.base_path);
+    let local_var_uri_str = format!("{}/clients", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
@@ -162,7 +172,7 @@ pub async fn post_accounts(configuration: &configuration::Configuration, new_acc
     if let Some(ref local_var_token) = local_var_configuration.oauth_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    local_var_req_builder = local_var_req_builder.json(&new_account);
+    local_var_req_builder = local_var_req_builder.json(&new_client);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -173,18 +183,19 @@ pub async fn post_accounts(configuration: &configuration::Configuration, new_acc
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<PostAccountsError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<PostClientsSuperadminError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
 }
 
-pub async fn put_account_by_id(configuration: &configuration::Configuration, id: &str, account: crate::models::Account) -> Result<crate::models::Account, Error<PutAccountByIdError>> {
+/// Updates an OAuth client
+pub async fn put_clients_by_id_superadmin(configuration: &configuration::Configuration, id: &str, client_update: crate::models::ClientUpdate) -> Result<crate::models::Client, Error<PutClientsByIdSuperadminError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/accounts/{id}", local_var_configuration.base_path, id=crate::apis::urlencode(id));
+    let local_var_uri_str = format!("{}/clients/{id}", local_var_configuration.base_path, id=crate::apis::urlencode(id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
@@ -193,7 +204,7 @@ pub async fn put_account_by_id(configuration: &configuration::Configuration, id:
     if let Some(ref local_var_token) = local_var_configuration.oauth_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    local_var_req_builder = local_var_req_builder.json(&account);
+    local_var_req_builder = local_var_req_builder.json(&client_update);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -204,7 +215,7 @@ pub async fn put_account_by_id(configuration: &configuration::Configuration, id:
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<PutAccountByIdError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_entity: Option<PutClientsByIdSuperadminError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }

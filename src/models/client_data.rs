@@ -12,15 +12,15 @@
 
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
-pub struct AuthorizationRequest {
-    #[serde(rename = "tenantId")]
-    pub tenant_id: String,
+pub struct ClientData {
+    #[serde(rename = "data")]
+    pub data: Vec<crate::models::Client>,
 }
 
-impl AuthorizationRequest {
-    pub fn new(tenant_id: String) -> AuthorizationRequest {
-        AuthorizationRequest {
-            tenant_id,
+impl ClientData {
+    pub fn new(data: Vec<crate::models::Client>) -> ClientData {
+        ClientData {
+            data,
         }
     }
 }
