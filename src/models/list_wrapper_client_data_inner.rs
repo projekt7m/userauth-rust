@@ -12,7 +12,9 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct ClientUpdate {
+pub struct ListWrapperClientDataInner {
+    #[serde(rename = "clientId")]
+    pub client_id: uuid::Uuid,
     #[serde(rename = "name")]
     pub name: String,
     #[serde(rename = "redirectUri")]
@@ -21,18 +23,19 @@ pub struct ClientUpdate {
     pub refresh_token: bool,
     #[serde(rename = "sessionDuration", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub session_duration: Option<Option<i32>>,
-    #[serde(rename = "clientSecret", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub client_secret: Option<Option<String>>,
+    #[serde(rename = "lastChange")]
+    pub last_change: String,
 }
 
-impl ClientUpdate {
-    pub fn new(name: String, redirect_uri: String, refresh_token: bool) -> ClientUpdate {
-        ClientUpdate {
+impl ListWrapperClientDataInner {
+    pub fn new(client_id: uuid::Uuid, name: String, redirect_uri: String, refresh_token: bool, last_change: String) -> ListWrapperClientDataInner {
+        ListWrapperClientDataInner {
+            client_id,
             name,
             redirect_uri,
             refresh_token,
             session_duration: None,
-            client_secret: None,
+            last_change,
         }
     }
 }

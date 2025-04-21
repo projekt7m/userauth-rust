@@ -17,14 +17,12 @@ Method | HTTP request | Description
 > delete_clients_by_id_superadmin(id)
 Deletes an OAuth client
 
-Deletes an OAuth client
-
 ### Parameters
 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**id** | **String** | ID of the client | [required] |
+**id** | **uuid::Uuid** | ID of the client | [required] |
 
 ### Return type
 
@@ -44,9 +42,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_clients_by_id_superadmin
 
-> crate::models::Client get_clients_by_id_superadmin(id)
-Requests a single OAuth client by its ID
-
+> models::Client get_clients_by_id_superadmin(id)
 Requests a single OAuth client by its ID
 
 ### Parameters
@@ -54,11 +50,11 @@ Requests a single OAuth client by its ID
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**id** | **String** | ID of the client | [required] |
+**id** | **uuid::Uuid** | ID of the client | [required] |
 
 ### Return type
 
-[**crate::models::Client**](Client.md)
+[**models::Client**](Client.md)
 
 ### Authorization
 
@@ -74,10 +70,10 @@ Name | Type | Description  | Required | Notes
 
 ## get_clients_superadmin
 
-> crate::models::ClientData get_clients_superadmin()
+> models::ListWrapperClient get_clients_superadmin()
 Gets the list of all registered OAuth clients
 
-Gets the list of all registered OAuth clients  This endpoint is only available to SuperAdmins.
+This endpoint is only available to SuperAdmins.
 
 ### Parameters
 
@@ -85,7 +81,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**crate::models::ClientData**](ClientData.md)
+[**models::ListWrapperClient**](ListWrapper_Client.md)
 
 ### Authorization
 
@@ -101,10 +97,10 @@ This endpoint does not need any parameter.
 
 ## post_clients_superadmin
 
-> crate::models::Client post_clients_superadmin(new_client)
+> models::Client post_clients_superadmin(new_client)
 Create a new OAuth client
 
-Create a new OAuth client  This endpoint is only available to SuperAdmin users.
+This endpoint is only available to SuperAdmin users.
 
 ### Parameters
 
@@ -115,7 +111,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Client**](Client.md)
+[**models::Client**](Client.md)
 
 ### Authorization
 
@@ -131,9 +127,7 @@ Name | Type | Description  | Required | Notes
 
 ## put_clients_by_id_superadmin
 
-> crate::models::Client put_clients_by_id_superadmin(id, client_update)
-Updates an OAuth client
-
+> models::Client put_clients_by_id_superadmin(id, client_update)
 Updates an OAuth client
 
 ### Parameters
@@ -141,12 +135,12 @@ Updates an OAuth client
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**id** | **String** | ID of the client | [required] |
+**id** | **uuid::Uuid** | ID of the client | [required] |
 **client_update** | [**ClientUpdate**](ClientUpdate.md) | The updated client | [required] |
 
 ### Return type
 
-[**crate::models::Client**](Client.md)
+[**models::Client**](Client.md)
 
 ### Authorization
 

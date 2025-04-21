@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**service_id** | **String** |  | 
+**service_id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
 **service_tag** | **String** |  | 
 **description** | **String** |  | 
 **service_uri** | **String** |  | 

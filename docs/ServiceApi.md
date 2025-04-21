@@ -15,14 +15,14 @@ Method | HTTP request | Description
 > delete_services_superadmin(id)
 Deletes a service
 
-Deletes a service  **Note:** this can only been accessed by SUPERADMIN users (aka P7M itself)
+**Note:** this can only been accessed by SUPERADMIN users (aka P7M itself)
 
 ### Parameters
 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**id** | **String** | ID of the service | [required] |
+**id** | **uuid::Uuid** | ID of the service | [required] |
 
 ### Return type
 
@@ -42,9 +42,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_services
 
-> crate::models::ServiceData get_services()
-Get the list of all known services of P7M
-
+> models::ListWrapperService get_services()
 Get the list of all known services of P7M
 
 ### Parameters
@@ -53,7 +51,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**crate::models::ServiceData**](ServiceData.md)
+[**models::ListWrapperService**](ListWrapper_Service.md)
 
 ### Authorization
 
@@ -69,10 +67,10 @@ This endpoint does not need any parameter.
 
 ## post_services_superadmin
 
-> crate::models::Service post_services_superadmin(new_service)
+> models::Service post_services_superadmin(new_service)
 Create a new service
 
-Create a new service  **Note:** This can only been accessed by SUPERADMIN users (aka P7M itself)
+**Note:** This can only been accessed by SUPERADMIN users (aka P7M itself)
 
 ### Parameters
 
@@ -83,7 +81,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Service**](Service.md)
+[**models::Service**](Service.md)
 
 ### Authorization
 

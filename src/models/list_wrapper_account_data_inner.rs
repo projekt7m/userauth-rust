@@ -11,9 +11,9 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// Account : An account that can be used to authenticate
+/// ListWrapperAccountDataInner : An account that can be used to authenticate
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct Account {
+pub struct ListWrapperAccountDataInner {
     /// ID of the account
     #[serde(rename = "accountId")]
     pub account_id: uuid::Uuid,
@@ -37,10 +37,10 @@ pub struct Account {
     pub last_change: String,
 }
 
-impl Account {
+impl ListWrapperAccountDataInner {
     /// An account that can be used to authenticate
-    pub fn new(account_id: uuid::Uuid, tenant_id: uuid::Uuid, username: String, realname: String, user_type: models::UserType, phone: String, last_change: String) -> Account {
-        Account {
+    pub fn new(account_id: uuid::Uuid, tenant_id: uuid::Uuid, username: String, realname: String, user_type: models::UserType, phone: String, last_change: String) -> ListWrapperAccountDataInner {
+        ListWrapperAccountDataInner {
             account_id,
             tenant_id,
             username,

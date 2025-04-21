@@ -1,10 +1,10 @@
-# AuthorizationRequest
+# ListWrapperService
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**tenant_id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
+**data** | [**Vec<models::ListWrapperServiceDataInner>**](ListWrapper_Service_data_inner.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

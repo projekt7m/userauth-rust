@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**client_id** | **String** |  | 
+**client_id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
 **name** | **String** |  | 
 **redirect_uri** | **String** |  | 
 **refresh_token** | **bool** |  | 

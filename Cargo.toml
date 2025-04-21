@@ -1,20 +1,17 @@
 [package]
 name = "p7m-userauth"
-description = "Rust bindings for the login and authentication API of P7M"
-version = "0.13.0"
-authors = ["OpenAPI Generator team and contributors"]
-edition = "2018"
+version = "0.14.2"
+authors = ["tech@p7m.de"]
+description = "# API for authentication and managing user accounts  This is the API of the service at P7M that manages tenants, accounts and authentication. It is the basis of many services of P7M.  The caller has to be authenticated with the system and provide a JWT token in the Authorization header of the HTTP request. When using the API you typically get this token by authenticating first with OAuth 2.0.  When you are trying this API using the Swagger interface, you need to click the `Authorize` button and then again the Authorize button in the pop-up that gets opened."
 license = "Apache-2.0"
 repository = "https://github.com/projekt7m/userauth-rust"
+edition = "2021"
 
 [dependencies]
-serde = "^1.0"
-serde_derive = "^1.0"
+serde = { version = "^1.0", features = ["derive"] }
+serde_with = { version = "^3.8", default-features = false, features = ["base64", "std", "macros"] }
 serde_json = "^1.0"
-url = "^2.2"
-[dependencies.reqwest]
-version = "^0.11"
-default-features = false
-features = ["json", "multipart", "rustls-tls"]
-
-[dev-dependencies]
+serde_repr = "^0.1"
+url = "^2.5"
+uuid = { version = "^1.8", features = ["serde", "v4"] }
+reqwest = { version = "^0.12", default-features = false, features = ["json", "multipart", "rustls-tls"] }

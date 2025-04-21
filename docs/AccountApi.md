@@ -8,7 +8,7 @@ Method | HTTP request | Description
 [**get_account_by_id**](AccountApi.md#get_account_by_id) | **GET** /accounts/{id} | Get an account, that is known by its ID (UUID)
 [**get_accounts**](AccountApi.md#get_accounts) | **GET** /accounts | Get the list of all accounts of the tenant
 [**post_accounts**](AccountApi.md#post_accounts) | **POST** /accounts | 
-[**put_account_by_id**](AccountApi.md#put_account_by_id) | **PUT** /accounts/{id} | 
+[**put_account_by_id**](AccountApi.md#put_account_by_id) | **PUT** /accounts/{id} | Update an existing account
 
 
 
@@ -17,14 +17,12 @@ Method | HTTP request | Description
 > delete_account_by_id(id)
 Delete a user account
 
-Delete a user account
-
 ### Parameters
 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**id** | **String** | ID of the account | [required] |
+**id** | **uuid::Uuid** | ID of the account | [required] |
 
 ### Return type
 
@@ -44,9 +42,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_account_by_id
 
-> crate::models::Account get_account_by_id(id)
-Get an account, that is known by its ID (UUID)
-
+> models::Account get_account_by_id(id)
 Get an account, that is known by its ID (UUID)
 
 ### Parameters
@@ -54,11 +50,11 @@ Get an account, that is known by its ID (UUID)
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**id** | **String** | ID of the account | [required] |
+**id** | **uuid::Uuid** | ID of the account | [required] |
 
 ### Return type
 
-[**crate::models::Account**](Account.md)
+[**models::Account**](Account.md)
 
 ### Authorization
 
@@ -74,18 +70,21 @@ Name | Type | Description  | Required | Notes
 
 ## get_accounts
 
-> crate::models::AccountData get_accounts()
+> models::ListWrapperAccount get_accounts(changed_since)
 Get the list of all accounts of the tenant
 
-Get the list of all accounts of the tenant  An account represents an authentication identity
+An account represents an authentication identity
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**changed_since** | Option<**String**> | only return accounts that have been changed since this datetime |  |
 
 ### Return type
 
-[**crate::models::AccountData**](AccountData.md)
+[**models::ListWrapperAccount**](ListWrapper_Account.md)
 
 ### Authorization
 
@@ -101,7 +100,7 @@ This endpoint does not need any parameter.
 
 ## post_accounts
 
-> crate::models::Account post_accounts(new_account)
+> models::Account post_accounts(new_account)
 
 
 ### Parameters
@@ -113,7 +112,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Account**](Account.md)
+[**models::Account**](Account.md)
 
 ### Authorization
 
@@ -129,20 +128,20 @@ Name | Type | Description  | Required | Notes
 
 ## put_account_by_id
 
-> crate::models::Account put_account_by_id(id, account)
-
+> models::Account put_account_by_id(id, new_account)
+Update an existing account
 
 ### Parameters
 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**id** | **String** | ID of the account | [required] |
-**account** | [**Account**](Account.md) | Account to update | [required] |
+**id** | **uuid::Uuid** | ID of the account | [required] |
+**new_account** | [**NewAccount**](NewAccount.md) | Account to update | [required] |
 
 ### Return type
 
-[**crate::models::Account**](Account.md)
+[**models::Account**](Account.md)
 
 ### Authorization
 

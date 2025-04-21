@@ -12,29 +12,35 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct Client {
-    #[serde(rename = "clientId")]
-    pub client_id: uuid::Uuid,
+pub struct ListWrapperTenantDataInner {
+    #[serde(rename = "tenantId")]
+    pub tenant_id: uuid::Uuid,
     #[serde(rename = "name")]
     pub name: String,
-    #[serde(rename = "redirectUri")]
-    pub redirect_uri: String,
-    #[serde(rename = "refreshToken")]
-    pub refresh_token: bool,
-    #[serde(rename = "sessionDuration", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub session_duration: Option<Option<i32>>,
+    #[serde(rename = "realm")]
+    pub realm: String,
+    #[serde(rename = "timezone")]
+    pub timezone: String,
+    #[serde(rename = "parentId", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub parent_id: Option<Option<uuid::Uuid>>,
+    #[serde(rename = "serviceIds")]
+    pub service_ids: Vec<uuid::Uuid>,
+    #[serde(rename = "serviceTags")]
+    pub service_tags: Vec<String>,
     #[serde(rename = "lastChange")]
     pub last_change: String,
 }
 
-impl Client {
-    pub fn new(client_id: uuid::Uuid, name: String, redirect_uri: String, refresh_token: bool, last_change: String) -> Client {
-        Client {
-            client_id,
+impl ListWrapperTenantDataInner {
+    pub fn new(tenant_id: uuid::Uuid, name: String, realm: String, timezone: String, service_ids: Vec<uuid::Uuid>, service_tags: Vec<String>, last_change: String) -> ListWrapperTenantDataInner {
+        ListWrapperTenantDataInner {
+            tenant_id,
             name,
-            redirect_uri,
-            refresh_token,
-            session_duration: None,
+            realm,
+            timezone,
+            parent_id: None,
+            service_ids,
+            service_tags,
             last_change,
         }
     }

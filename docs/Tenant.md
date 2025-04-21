@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**tenant_id** | **String** |  | 
+**tenant_id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
 **name** | **String** |  | 
 **realm** | **String** |  | 
 **timezone** | **String** |  | 
-**parent_id** | Option<**String**> |  | [optional]
-**service_ids** | **Vec<String>** |  | 
+**parent_id** | Option<[**uuid::Uuid**](uuid::Uuid.md)> |  | [optional]
+**service_ids** | [**Vec<uuid::Uuid>**](uuid::Uuid.md) |  | 
 **service_tags** | **Vec<String>** |  | 
 **last_change** | **String** |  | 
 
